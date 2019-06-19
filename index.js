@@ -10,7 +10,12 @@ const url = 'https://test.mudrayaod.now.sh'
 
 bot.setWebHook(`${url}/bot${token}`)
 
-bot.on('message', function onMessage(msg) {
-  bot.sendMessage(msg.chat.id, 'I am alive on Zeit Now!');
-});
+const app = require('express')()
+app.get('*', (req, res) => {
+    res.send('Hello from Express.js!')
+    bot.on('message', function onMessage(msg) {
+        bot.sendMessage(msg.chat.id, 'I am alive on Zeit Now!');
+    });
+})
+app.listen()
 
