@@ -1,5 +1,5 @@
-const http = require('http');
-const request = require('request');
+const http = require('http')
+const request = require('request')
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 const token = process.env['tg_api_key'] || '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
@@ -64,14 +64,14 @@ http.createServer(function (req, res) {
                 let optionsJsdom = {
                     referrer: 'http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html'
                 }
-                let requestHoroscope = http.get('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', function (response) {
-                    if (response.statusCode === 200) {
+                let requestHoroscope = http.get('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', function (responseHoroscope) {
+                    if (responseHoroscope.statusCode === 200) {
                         JSDOM.fromURL('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', optionsJsdom).then(dom => {
                                 let horoscope = dom.window.document.querySelectorAll('.p-3')[1].innerHTML
                                 sendMessage(chat_id, horoscope, res)
                             }
                         )
-                    }
+                    }else { sendMessage(chat_id, 'Пожалуйста, придерживайся инструкции ;)', res) }
                 })
                 requestHoroscope.on('error', function (error) {
                     console.error(error.status)
