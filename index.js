@@ -26,23 +26,6 @@ const sendMessage = (chat_id, text, res) => {
     )
 };
 
-const setWebHook = () => {
-    const setWebhookUrl = `https://api.telegram.org/bot${token}/setWebhook`;
-
-    request.post({
-            url: setWebhookUrl,
-            method: 'post',
-            body: {
-                url: webHookUrl
-            },
-            json: true
-        },
-        (error, response, body) => {
-            console.log(body);
-        })
-};
-
-setWebHook()
 
 http.createServer(function (req, res) {
     let data = '';
@@ -98,6 +81,25 @@ http.createServer(function (req, res) {
         }
     });
 }).listen(3000);
+
+
+const setWebHook = () => {
+    const setWebhookUrl = `https://api.telegram.org/bot${token}/setWebhook`;
+
+    request.post({
+            url: setWebhookUrl,
+            method: 'post',
+            body: {
+                url: webHookUrl
+            },
+            json: true
+        },
+        (error, response, body) => {
+            console.log(body);
+        })
+};
+
+setWebHook()
 
 
 
