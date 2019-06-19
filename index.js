@@ -22,20 +22,49 @@
 const http = require('http');
 const request = require('request');
 
-const TelegramBot = require('node-telegram-bot-api')
+// const TelegramBot = require('node-telegram-bot-api')
 const token = process.env['tg_api_key'] || '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
-const bot = new TelegramBot(token, { polling: true })
+// const bot = new TelegramBot(token, { polling: true })
 const url = 'https://test.mudrayaod.now.sh'
 
-const server = http.createServer((req, res) => {
+const sendMessage = (chat_id, text, res) => {
+    const sendMessageUrl = `https://api.telegram.org/bot${token}/sendMessage`;
 
-// bot.setWebHook(`${url}/bot${token}`)
-bot.on('message', function onMessage(msg) {
-    bot.sendMessage(msg.chat.id, 'I am alive on Zeit Now!');
-});
-});
+    request.post({
+            url: sendMessageUrl,
+            method: 'post',
+            body: {
+                chat_id: chat_id,
+                text: text
+            },
+            json: true
+        },
+        (error, response, body) => {
+            console.log(error);
+            console.log(body);
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end()
+        }
+    )
+};
 
-server.listen();
+http.createServer(function (req, res) {
+    let data = '';
+
+    req.on('data', chunk => {
+        data += chunk;
+    });
+
+    req.on('end', () => {
+        const parsedUpdate = data != "" ? JSON.parse(data) : {};
+        if (typeof parsedUpdate.message !== 'undefined') {
+            const text = parsedUpdate.message.text;
+            const chat_id = parsedUpdate.message.chat.id;
+
+            sendMessage(chat_id, 'I am alive on zeit Now!', res);
+        }
+    });
+}).listen(3000);
 
 const setWebHook = () => {
     const setWebhookUrl = `https://api.telegram.org/bot${token}/setWebhook`;
