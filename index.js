@@ -39,45 +39,7 @@ http.createServer(function (req, res) {
         if (typeof parsedUpdate.message !== 'undefined') {
             const text = parsedUpdate.message.text;
             const chat_id = parsedUpdate.message.chat.id;
-            if (text === '/start') {
-                const start = 'Добро пожаловать!\nЧтобы узнать как пользоваться ботом используй команду /help'
-                sendMessage(chat_id, start, res)
-            } else if (text === '/help') {
-                const help = 'Давай же вместе узнаем, что интересного ждет тебя сегодня)\n' +
-                    'Надеюсь, ты знаешь свой зодиакальный знак) В зависимости от этого введи одно из следующих слов:\n\n' +
-                    'aries - если ты Овен\n' +
-                    'taurus - если ты Телец\n' +
-                    'gemini - если ты Близнецы\n' +
-                    'cancer - если ты Рак\n' +
-                    'leo - если ты Лев\n' +
-                    'virgo - если ты Дева\n' +
-                    'libra - если ты Весы\n' +
-                    'scorpio - если ты Скорпион\n' +
-                    'sagittarius - если ты Стрелец\n' +
-                    'capricorn - если ты Козерог\n' +
-                    'aquarius - если ты Водолей\n' +
-                    'pisces - если ты Рыбы\n'
-                sendMessage(chat_id, help, res)
-            } else if (text === 'aries' || text === 'taurus' || text === 'gemini' || text === 'cancer' || text === 'leo' || text === 'virgo'
-                || text === 'libra' || text === 'scorpio' || text === 'sagittarius' || text === 'capricorn' || text === 'aquarius' || text === 'pisces') {
-
-                let optionsJsdom = {
-                    referrer: 'http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html'
-                }
-                let requestHoroscope = http.get('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', function (responseHoroscope) {
-                    if (responseHoroscope.statusCode === 200) {
-                        JSDOM.fromURL('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', optionsJsdom).then(dom => {
-                                let horoscope = dom.window.document.querySelectorAll('.p-3')[1].innerHTML
-                                sendMessage(chat_id, horoscope, res)
-                            }
-                        )
-                    }else { sendMessage(chat_id, 'Пожалуйста, придерживайся инструкции ;)', res) }
-                })
-                requestHoroscope.on('error', function (error) {
-                    console.error(error.status)
-                })
-
-            } else { sendMessage(chat_id, 'Пожалуйста, придерживайся инструкции ;)', res) }
+            sendMessage(chat_id, '888',res)
         }
     });
 }).listen(3000);
