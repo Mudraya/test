@@ -36,7 +36,7 @@ http.createServer(function (req, res) {
   req.on('end', () => {
     const parsedUpdate = data !== '' ? JSON.parse(data) : {}
     if (typeof parsedUpdate.message !== 'undefined') {
-      const text = parsedUpdate.message.text
+      const text = parsedUpdate.message.text.toString()
       const chatId = parsedUpdate.message.chat.id
       if (text === '/start') {
         const start = 'Добро пожаловать!\nЧтобы узнать как пользоваться ботом используй команду /help'
