@@ -28,7 +28,7 @@ bot.setWebHook(`${url}/bot${token}`)
 bot.on('message', function onMessage(msg) {
     bot.sendMessage(msg.chat.id, 'I am alive on Zeit Now!');
 });
-// require('http').createServer().listen(3000)
+require('http').createServer().listen(443)
 
 
 
