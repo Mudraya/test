@@ -2,7 +2,7 @@
   "version": 2,
   "name": "test",
   "builds": [
-  { "src": "index.js", "use": "@now/node-server" },
+  { "src": "index.js", "use": "@now/node" },
   { "src": "index.html", "use": "@now/static" }
   ],
   "routes": [{ "src": "/", "dest": "index.html" }]
