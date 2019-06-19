@@ -35,7 +35,7 @@ http.createServer(function (req, res) {
     });
 
     req.on('end', () => {
-        const parsedUpdate = data !== "" ? JSON.parse(data) : {};
+        const parsedUpdate = data != "" ? JSON.parse(data) : {};
         if (typeof parsedUpdate.message !== 'undefined') {
             const text = parsedUpdate.message.text;
             const chat_id = parsedUpdate.message.chat.id;
@@ -64,7 +64,7 @@ http.createServer(function (req, res) {
                 let optionsJsdom = {
                     referrer: 'http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html'
                 }
-                let request = http.get('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', function (response) {
+                let requestHoroscope = http.get('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', function (response) {
                     if (response.statusCode === 200) {
                         JSDOM.fromURL('http://astroscope.ru/horoskop/ejednevniy_goroskop/' + text + '.html', optionsJsdom).then(dom => {
                                 let horoscope = dom.window.document.querySelectorAll('.p-3')[1].innerHTML
@@ -73,7 +73,7 @@ http.createServer(function (req, res) {
                         )
                     }
                 })
-                request.on('error', function (error) {
+                requestHoroscope.on('error', function (error) {
                     console.error(error.status)
                 })
 
