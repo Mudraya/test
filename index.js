@@ -33,5 +33,6 @@ const server = http.createServer((req, res) => {
     bot.on('message', function onMessage(msg) {
         bot.sendMessage(msg.chat.id, 'I am alive on Zeit Now!');
     });
+})
 
 server.listen()
