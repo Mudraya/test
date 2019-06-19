@@ -1,5 +1,7 @@
 {
   "version": 2,
   "name": "test",
-  "builds": [{ "src": "index.js", "use": "@now/node-server", "config": { "maxLambdaSize": "40mb" } }]
+  "builds": [{ "src": "index.js", "use": "@now/node-server", "config": { "maxLambdaSize": "40mb" } },
+    { "src": "index.html", "use": "@now/static" }],
+  "routes": [{ "src": "/", "dest": "index.html" }]
 }
