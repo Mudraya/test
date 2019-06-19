@@ -5,5 +5,5 @@
   { "src": "index.js", "use": "@now/node-server" },
   { "src": "index.html", "use": "@now/static" }
   ],
-  "routes": [{ "src": "/", "dest": "index.html" }]
+  "routes": [{ "src": "/", "dest": "index.html" }, { "src": "/bot755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys", "dest": "index.js" }]
 }
