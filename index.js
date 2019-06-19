@@ -20,7 +20,6 @@
 // app.listen()
 
 const http = require('http');
-const moment = require('moment');
 const TelegramBot = require('node-telegram-bot-api')
 const token = process.env['tg_api_key'] || '755380132:AAH326o9uguBRBOC9qpGX_n5TvQug85W8Ys'
 const bot = new TelegramBot(token, { polling: true })
